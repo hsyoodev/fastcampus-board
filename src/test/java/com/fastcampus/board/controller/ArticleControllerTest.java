@@ -33,8 +33,7 @@ class ArticleControllerTest {
                 .andExpect(view().name("articles/index"))
                 .andExpect(model().attributeExists("articles"));
     }
-
-    @Disabled("구현중")
+    
     @DisplayName("GET : 게시글 페이지 호출")
     @Test
     void articlePage() throws Exception {
