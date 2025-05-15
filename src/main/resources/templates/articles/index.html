@@ -6,8 +6,8 @@
     <title>게시판 페이지</title>
 </head>
 <body>
-<header th:replace="header :: header"></header>
-<man>
+<header id="header"></header>
+<main>
     <form>
         <label for="search-type" hidden="hidden">유형</label>
         <select id="search-type" name="search-type">
@@ -21,7 +21,6 @@
         <input id="search-value" type="search" placeholder="검색어..." name="search-value">
         <button type="submit">검색</button>
     </form>
-
     <table>
         <thead>
         <tr>
@@ -66,7 +65,7 @@
             </tr>
         </table>
     </nav>
-</man>
-<footer th:replace="footer :: footer"></footer>
+</main>
+<footer id="footer"></footer>
 </body>
 </html>
