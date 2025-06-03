@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @Import(SecurityConfig.class)
 @WebMvcTest(MainController.class)
@@ -21,9 +21,11 @@ class MainControllerTest {
     }
 
     @Test
-    void rootRedirect() throws Exception {
+    void rootForward() throws Exception {
         mvc.perform(get("/"))
-                .andExpect(status().is3xxRedirection());
+                .andExpect(status().isOk())
+                .andExpect(view().name("forward:/articles"))
+                .andExpect(forwardedUrl("/articles"));
     }
 
 }

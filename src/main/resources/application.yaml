@@ -8,9 +8,9 @@ logging:
 
 spring:
   datasource:
-    url:
-    username:
-    password:
+    url: jdbc:mariadb://svc.sel4.cloudtype.app:31909/fastcampus_board
+    username: root
+    password: Epdlxjqpdltm2025!
     driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     defer-datasource-initialization: true
