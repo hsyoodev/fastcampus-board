@@ -2,6 +2,7 @@ package com.fastcampus.board.repository;
 
 import com.fastcampus.board.config.JpaConfig;
 import com.fastcampus.board.domain.Article;
+import com.fastcampus.board.domain.UserAccount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("JPA 연결 테스트")
 @Import(JpaConfig.class)
 @DataJpaTest
-class ArticleRepositoryTest {
+class JpaRepositoryTest {
 
     private final ArticleRepository articleRepository;
     private final ArticleCommentRepository articleCommentRepository;
+    private final UserAccountRepository userAccountRepository;
 
     @Autowired
-    ArticleRepositoryTest(ArticleRepository articleRepository, ArticleCommentRepository articleCommentRepository) {
+    JpaRepositoryTest(ArticleRepository articleRepository, ArticleCommentRepository articleCommentRepository, UserAccountRepository userAccountRepository) {
         this.articleRepository = articleRepository;
         this.articleCommentRepository = articleCommentRepository;
+        this.userAccountRepository = userAccountRepository;
     }
 
     @DisplayName("select 테스트")
@@ -43,7 +46,8 @@ class ArticleRepositoryTest {
     void insert() {
         // given
         long previousCount = articleRepository.count();
-        Article article = Article.of("new article", "new content", "#spring");
+        UserAccount userAccount = userAccountRepository.save(UserAccount.of("hsyoodev", "pw", null, null, null));
+        Article article = Article.of(userAccount, "new article", "new content", "#spring");
 
         // when
         articleRepository.save(article);
